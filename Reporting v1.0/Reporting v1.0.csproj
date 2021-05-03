@@ -225,6 +225,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="source\Example.txt" />
     <Content Include="source\Вид контроля при ТД.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
