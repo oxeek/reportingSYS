@@ -3945,28 +3945,114 @@ namespace Reporting_v1._0
                             r++;
                         }
                         catch
-                        {
-                        }
+                        { }
                     }
 
-                    //for (int i = 2; i < table.Rows.Count; i++) 
+                    
+                    List<int> inds = new List<int>();
+                    #region tableMergeColumn1
+
+                    for (int i = 2; i <= table.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            if (table.Cell(i, 1).Range.Text == table.Cell(i + 1, 1).Range.Text)
+                            {
+                                inds.Add(i);
+                            }
+                            else
+                            {
+                                table.Rows[inds[0]].Cells[1].Merge(table.Rows[inds[inds.Count - 1]].Cells[1]);
+                                inds.Clear();
+                            }
+                        }
+                        catch
+                        { }
+                    }
+                    try
+                    {
+                        for (int ro = 0; ro < inds.Count - 1; ro++)
+                        {
+                            table.Cell(inds[ro], 1).Range.Text = "";
+                        }
+                        table.Rows[inds[0]].Cells[1].Merge(table.Rows[inds[inds.Count - 1]].Cells[1]);
+                        inds.Clear();
+                    }
+                    catch
+                    { }
+
+                    #endregion
+
+                    inds.Clear();
+
+                    //#region tableMergeColumn2
+
+                    //for (int i = 2; i <= table.Rows.Count; i++)
                     //{
                     //    try
                     //    {
-                    //        if (table.Cell(i, 1).Range.Text == table.Cell(i + 1, 1).Range.Text)
+                    //        if (table.Cell(i, 2).Range.Text == table.Cell(i + 1, 2).Range.Text)
                     //        {
-                    //            string text = table.Cell(i, 1).Range.Text;
-                    //            table.Cell(i, 1).Range.Text = "";
-                    //            table.Rows[i].Cells[1].Merge(table.Rows[i+1].Cells[1]);
-                    //            //table.Cell(i + 1, 1).Range.Text = text;
-                                
+                    //            inds.Add(i);
+                    //        }
+                    //        else
+                    //        {
+                    //            table.Rows[inds[0]].Cells[2].Merge(table.Rows[inds[inds.Count - 1]].Cells[2]);
+                    //            inds.Clear();
                     //        }
                     //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        MessageBox.Show(ex.Message);
-                    //    }
+                    //    catch
+                    //    { }
                     //}
+                    //try
+                    //{
+                    //    for (int ro = 0; ro < inds.Count - 1; ro++)
+                    //    {
+                    //        table.Cell(inds[ro], 2).Range.Text = "";
+                    //    }
+                    //    table.Rows[inds[0]].Cells[2].Merge(table.Rows[inds[inds.Count - 1]].Cells[2]);
+                    //    inds.Clear();
+                    //}
+                    //catch
+                    //{ }
+
+                    //#endregion
+
+                    //inds.Clear();
+
+                    //#region tableMergeColumn3
+
+                    //for (int i = 2; i <= table.Rows.Count; i++)
+                    //{
+                    //    try
+                    //    {
+                    //        if (table.Cell(i, 3).Range.Text == table.Cell(i + 1, 3).Range.Text)
+                    //        {
+                    //            inds.Add(i);
+                    //        }
+                    //        else
+                    //        {
+                    //            table.Rows[inds[0]].Cells[3].Merge(table.Rows[inds[inds.Count - 1]].Cells[3]);
+                    //            inds.Clear();
+                    //        }
+                    //    }
+                    //    catch
+                    //    { }
+                    //}
+                    //try
+                    //{
+                    //    for (int ro = 0; ro < inds.Count - 1; ro++)
+                    //    {
+                    //        table.Cell(inds[ro], 3).Range.Text = "";
+                    //    }
+                    //    table.Rows[inds[0]].Cells[3].Merge(table.Rows[inds[inds.Count - 1]].Cells[3]);
+                    //    inds.Clear();
+                    //}
+                    //catch
+                    //{ }
+
+                    //#endregion
+
                 }
 
                 List<string> diameters = new List<string>();
