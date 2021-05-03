@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0642: Возможно, ошибочный пустой оператор
+dotnet_diagnostic.CS0642.severity = none

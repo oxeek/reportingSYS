@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CE6F4F29-E0EF-4BBA-A6E5-78CD22DBAF63}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Reporting_v1._0</RootNamespace>
+    <AssemblyName>`</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=20.7.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Cells.20.7.0\lib\net40\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="InputBox">
+      <HintPath>..\Libs\InputBox\InputBox\bin\Debug\InputBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral">
+      <HintPath>..\packages\HiNetCloud.Interop.VBIDE.20.7.2.10\lib\net46\Interop.VBIDE.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\Libs\pdf\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SautinSoft.ExcelToPdf, Version=5.3.6.16, Culture=neutral, PublicKeyToken=239046b8a1e8c07b, processorArchitecture=MSIL">
+      <HintPath>..\packages\sautinsoft.exceltopdf.5.3.6.16\lib\net47\SautinSoft.ExcelToPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="sharpPDF">
+      <HintPath>..\Libs\pdf\sharpPDF.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Doc, Version=8.11.9.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Doc.8.11.9\lib\net40\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.8.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Doc.8.11.9\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=6.11.6.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Doc.8.11.9\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Category.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ведомость дефектов основного металла.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ведомость дефектов основного металла.Designer.cs">
+      <DependentUpon>Ведомость дефектов основного металла.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ведомость журнала элементов.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ведомость журнала элементов.Designer.cs">
+      <DependentUpon>Ведомость журнала элементов.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Диагностируемый участок.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Диагностируемый участок.Designer.cs">
+      <DependentUpon>Диагностируемый участок.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Журнал выявленных особенностей.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Журнал выявленных особенностей.Designer.cs">
+      <DependentUpon>Журнал выявленных особенностей.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Журнал толщинометрии СДТ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Журнал толщинометрии СДТ.Designer.cs">
+      <DependentUpon>Журнал толщинометрии СДТ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Конвертер_журналов.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Конвертер_журналов.Designer.cs">
+      <DependentUpon>Конвертер_журналов.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Менеджер файлов.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Менеджер файлов.Designer.cs">
+      <DependentUpon>Менеджер файлов.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Отчет контроля кольцевых сварных соединений.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Отчет контроля кольцевых сварных соединений.Designer.cs">
+      <DependentUpon>Отчет контроля кольцевых сварных соединений.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Отчет неразрушающего контроля основного металла труб и СДТ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Отчет неразрушающего контроля основного металла труб и СДТ.Designer.cs">
+      <DependentUpon>Отчет неразрушающего контроля основного металла труб и СДТ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Редактор.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Редактор.Designer.cs">
+      <DependentUpon>Редактор.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Цветовой редактор.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Цветовой редактор.Designer.cs">
+      <DependentUpon>Цветовой редактор.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Ведомость дефектов основного металла.resx">
+      <DependentUpon>Ведомость дефектов основного металла.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ведомость журнала элементов.resx">
+      <DependentUpon>Ведомость журнала элементов.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Диагностируемый участок.resx">
+      <DependentUpon>Диагностируемый участок.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Журнал выявленных особенностей.resx">
+      <DependentUpon>Журнал выявленных особенностей.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Журнал толщинометрии СДТ.resx">
+      <DependentUpon>Журнал толщинометрии СДТ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Конвертер_журналов.resx">
+      <DependentUpon>Конвертер_журналов.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Менеджер файлов.resx">
+      <DependentUpon>Менеджер файлов.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Отчет контроля кольцевых сварных соединений.resx">
+      <DependentUpon>Отчет контроля кольцевых сварных соединений.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Отчет неразрушающего контроля основного металла труб и СДТ.resx">
+      <DependentUpon>Отчет неразрушающего контроля основного металла труб и СДТ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Редактор.resx">
+      <DependentUpon>Редактор.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Цветовой редактор.resx">
+      <DependentUpon>Цветовой редактор.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="source\Вид контроля при ТД.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Дата завершения.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Исполнитель.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\КС.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\ЛПУ МГ.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Номер участка.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Объект привязки.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\От привязки до диагностики.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Протяженность участка.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Способ прокладки.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Средства проведения.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Тип ТТКС.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="source\Типы дефектов.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
