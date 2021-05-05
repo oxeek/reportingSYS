@@ -3936,6 +3936,7 @@ namespace Reporting_v1._0
                                 table.Rows.Add();
                             }
 
+                            
                             table.Cell(r, 1).Range.Text = details[0];
                             table.Cell(r, 2).Range.Text = details[3];
                             table.Cell(r, 3).Range.Text = details[4];
@@ -3950,43 +3951,24 @@ namespace Reporting_v1._0
 
                     
                     List<int> inds = new List<int>();
-                    #region tableMergeColumn1
 
                     for (int i = 2; i <= table.Rows.Count; i++)
                     {
-                        try
+                        try 
                         {
-                            if (table.Cell(i, 1).Range.Text == table.Cell(i + 1, 1).Range.Text)
-                            {
-                                inds.Add(i);
-                            }
-                            else
-                            {
-                                table.Rows[inds[0]].Cells[1].Merge(table.Rows[inds[inds.Count - 1]].Cells[1]);
-                                inds.Clear();
-                            }
+                            
                         }
                         catch
-                        { }
-                    }
-                    try
-                    {
-                        for (int ro = 0; ro < inds.Count - 1; ro++)
                         {
-                            table.Cell(inds[ro], 1).Range.Text = "";
+                            
                         }
-                        table.Rows[inds[0]].Cells[1].Merge(table.Rows[inds[inds.Count - 1]].Cells[1]);
-                        inds.Clear();
                     }
-                    catch
-                    { }
+                    
+                    
 
-                    #endregion
-
-                    inds.Clear();
+                    //inds.Clear();
 
                     //#region tableMergeColumn2
-
                     //for (int i = 2; i <= table.Rows.Count; i++)
                     //{
                     //    try
@@ -4010,7 +3992,10 @@ namespace Reporting_v1._0
                     //    {
                     //        table.Cell(inds[ro], 2).Range.Text = "";
                     //    }
-                    //    table.Rows[inds[0]].Cells[2].Merge(table.Rows[inds[inds.Count - 1]].Cells[2]);
+                    //    if (inds.Count != 0) 
+                    //    {
+                    //        table.Rows[inds[0]].Cells[2].Merge(table.Rows[inds[inds.Count - 1]].Cells[2]);
+                    //    }
                     //    inds.Clear();
                     //}
                     //catch

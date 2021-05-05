@@ -749,11 +749,16 @@ namespace Reporting_v1._0
                         
                     }
                     catch { }
-
+                    
                     try 
                     {
                         double d = (Convert.ToDouble(element[3]) * 100)/* - (Convert.ToDouble(element[6]) / 10)*/;
                         double n = Convert.ToDouble(textBox10.Text) - Convert.ToDouble(textBox6.Text);
+
+                        if (n < 1) 
+                        {
+                            n = n * (-1);
+                        }
 
                         double L = (Math.PI * (d / 2) * n) / 180;
 
