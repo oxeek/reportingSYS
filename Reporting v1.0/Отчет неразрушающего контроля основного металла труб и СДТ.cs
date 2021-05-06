@@ -644,10 +644,14 @@ namespace Reporting_v1._0
                             }
                             try
                             {
-                                
+
                                 if (Convert.ToDouble(num1) > num)
                                 {
                                     dataGridView1.Rows[i].Height = 2;
+                                }
+                                else 
+                                {
+                                    dataGridView1.Rows[i].Height = 24;
                                 }
                             }
                             catch { }
@@ -682,6 +686,10 @@ namespace Reporting_v1._0
                                 {
 
                                     dataGridView1.Rows[i].Height = 2;
+                                }
+                                else
+                                {
+                                    dataGridView1.Rows[i].Height = 24;
                                 }
                             }
                             catch { }
@@ -719,6 +727,10 @@ namespace Reporting_v1._0
 
                                         dataGridView1.Rows[i].Height = 2;
                                     }
+                                    else
+                                    {
+                                        dataGridView1.Rows[i].Height = 24;
+                                    }
                                 }
                                 catch { }
 
@@ -734,9 +746,9 @@ namespace Reporting_v1._0
                     {
                         try
                         {
-                            if (dataGridView1[e.ColumnIndex, i].Value.ToString().Contains(result))
+                            if (dataGridView1[e.ColumnIndex, i].Value.ToString().ToLower().Contains(result.ToLower()))
                             {
-
+                                dataGridView1.Rows[i].Height = 24;
                             }
                             else
                             {
