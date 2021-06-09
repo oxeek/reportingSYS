@@ -4158,6 +4158,24 @@ namespace Reporting_v1._0
                 r = 4;
                 
                 table = doc.Tables[23];
+
+                int sum = 0;
+
+                double factsMetrajVTO = 0;
+                double colOsobennostei = 0;
+
+                double vikShovsCount = 0;
+                double vikDefShovsCount = 0;
+                double vikDefsCount = 0;
+                double vikDefsDDK = 0;
+
+                //double uzkFactMetr = 0; == factsMetrajVTO
+                double uzkControlPl = 0;
+                double uzkDefElemCount = 0;
+                double uzkDefsCount = 0;
+                double uzkDefsCountDDK = 0;
+
+
                 for (int i = 0; i < 999; i++)
                 {
                     bool isHere = false;
@@ -4165,8 +4183,25 @@ namespace Reporting_v1._0
                     string vikpath = _manager.folderName + "/ВИК/Маршрут - " + i + "/Маршрут - " + i + ".txt";
                     string uzkpath = _manager.folderName + "/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt";
 
+                    if (File.Exists(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt")) 
+                    {
+                        string[] ffile = File.ReadAllLines(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt");
+                        table.Cell(r, 2).Range.Text = i.ToString();
+                        try 
+                        {
+                            table.Cell(r, 1).Range.Text = ffile[17];
+                        } 
+                        catch 
+                        {
+                            table.Cell(r, 1).Range.Text = "-";
+                        }
+                        sum++;
+                        
+                    }
+
                     if (File.Exists(vtopath))
                     {
+                        string[] ffile = File.ReadAllLines(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt");
                         string[] file = File.ReadAllLines(vtopath);
 
                         int vtocount = 0;
@@ -4187,8 +4222,20 @@ namespace Reporting_v1._0
 
                         }
 
-                        table.Cell(r, 2).Range.Text = i.ToString();
-                        table.Cell(r, 4).Range.Text = vtocount.ToString();
+                        //table.Cell(r, 2).Range.Text = i.ToString();
+                        if (File.Exists(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt"))
+                        {
+                            table.Cell(r, 3).Range.Text = ffile[9];
+                            table.Cell(r, 4).Range.Text = vtocount.ToString();
+                            factsMetrajVTO += Convert.ToDouble(ffile[9]);
+                            colOsobennostei += Convert.ToDouble(vtocount);
+                        }
+                        else
+                        {
+                            table.Cell(r, 3).Range.Text = 0.ToString();
+                            table.Cell(r, 4).Range.Text = 0.ToString();
+                        }
+
 
                         isHere = true;
                     }
@@ -4225,7 +4272,9 @@ namespace Reporting_v1._0
                         table.Cell(r, 6).Range.Text = vikshovs.Count.ToString();
                         table.Cell(r, 7).Range.Text = vikcount.ToString();
 
-                        
+                        vikShovsCount += Convert.ToDouble(vikcount_nodefs);
+                        vikDefShovsCount += Convert.ToDouble(vikshovs.Count);
+                        vikDefsCount += Convert.ToDouble(vikcount);
                     }
 
                     if (File.Exists(uzkpath))
@@ -4249,12 +4298,15 @@ namespace Reporting_v1._0
                         uzkelems = uzkelems.Distinct().ToList();
 
                         table.Cell(r, 11).Range.Text = uzkelems.Count.ToString();
+                        uzkDefElemCount += Convert.ToDouble(uzkelems.Count);
                         table.Cell(r, 12).Range.Text = uzkdefs.ToString();
+                        uzkDefsCount += Convert.ToDouble(uzkdefs);
 
                         if (File.Exists(_manager.folderName + "/Маршруты/Площадь - " + i + ".txt"))
                         {
                             string[] filee = File.ReadAllLines(_manager.folderName + "/Маршруты/Площадь - " + i + ".txt");
                             table.Cell(r, 10).Range.Text = filee[0];
+                            uzkControlPl += Convert.ToDouble(filee[0]);
                         }
                         else
                         {
@@ -4264,18 +4316,18 @@ namespace Reporting_v1._0
                         if (File.Exists(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt"))
                         {
                             string[] ffile = File.ReadAllLines(_manager.folderName + "/Маршруты/Маршрут - " + i + ".txt");
-                            table.Cell(r, 3).Range.Text = ffile[9];
+                            
                             table.Cell(r, 9).Range.Text = ffile[9];
-
-                            if (ffile[17] != "") 
-                                table.Cell(r, 1).Range.Text = ffile[17];
-                            else
-                                table.Cell(r, 1).Range.Text = "-";
+                            //delete r,3
+                            //if (ffile[17] != "") 
+                            //    table.Cell(r, 1).Range.Text = ffile[17];
+                            //else
+                            //    table.Cell(r, 1).Range.Text = "-";
 
                         }
                         else
                         {
-                            table.Cell(r, 3).Range.Text = 0.ToString();
+                            //delete r,3
                             table.Cell(r, 9).Range.Text = 0.ToString();
                         }
                     }
@@ -4288,45 +4340,34 @@ namespace Reporting_v1._0
 
                     if (isHere)
                     {
-                        table.Rows.Add();
+                        table.Rows.Add(); 
                         r++;
+                        for (int q = 1; q < table.Columns.Count; q++)
+                        {
+                            table.Cell(r, q).Range.Text = "0";
+                        }
                         isHere = false;
                     }
 
                     progressBar1.Value++;
                 }
 
-                for (int i = 2; i <= table.Columns.Count; i++)
-                {
-                    double sum = 0;
-                    for (int j = 4; j <= table.Rows.Count; j++)
-                    {
-                        if (i == 2)
-                        {
-                            sum++;
-                        }
-                        else
-                        {
-                            try 
-                            {
-                                sum += Convert.ToDouble(table.Cell(j, i).Range.Text);
-                            } 
-                            catch { }
+                table.Cell(r, 3).Range.Text = factsMetrajVTO.ToString();
+                table.Cell(r, 4).Range.Text = colOsobennostei.ToString();
+                table.Cell(r, 5).Range.Text = vikShovsCount.ToString();
+                table.Cell(r, 6).Range.Text = vikDefShovsCount.ToString();
+                table.Cell(r, 7).Range.Text = vikDefsCount.ToString();
+                //table.Cell(r, 8).Range.Text = vikDefsCount.ToString();
+                table.Cell(r, 9).Range.Text = factsMetrajVTO.ToString();
+                table.Cell(r, 10).Range.Text = uzkControlPl.ToString();
+                table.Cell(r, 11).Range.Text = uzkDefElemCount.ToString();
+                table.Cell(r, 12).Range.Text = uzkDefsCount.ToString();
+                //table.Cell(r, 13).Range.Text = ;
 
-                        }
-                    }
 
-                    if (i == 2)
-                    {
-                        table.Cell(r, i).Range.Text = (sum-1).ToString();
-                    }
-                    else 
-                    {
-                        table.Cell(r, i).Range.Text = sum.ToString();
-                    }
-                    
+                table.Cell(r, 1).Range.Text = "Всего:";
+                table.Cell(r, 2).Range.Text = (sum-1).ToString();
 
-                }
                 #endregion
 
                 #region table24
