@@ -25,6 +25,7 @@ using Paragraph = Spire.Doc.Documents.Paragraph;
 using Spire.Doc.Formatting;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Reporting_v1._0.modules;
 
 namespace Reporting_v1._0
 {
@@ -2117,118 +2118,118 @@ namespace Reporting_v1._0
             return num;
         }
 
-        void detailsListGeneration() 
-        {
-            List<string> allELS = new List<string>();
-            List<string> allVTOS = new List<string>();
-            List<string> allMA = new List<string>();
+        //void detailsListGeneration() 
+        //{
+        //    List<string> allELS = new List<string>();
+        //    List<string> allVTOS = new List<string>();
+        //    List<string> allMA = new List<string>();
 
-             #region loading_from_journals
-            for (int i = 0; i < 999; i++)
-            {
-                if (Directory.Exists(_manager.folderName + @"/ВТО/Маршрут - " + i))
-                {
-                    List<string> data = ReadAllFiles(_manager.folderName + @"/ВТО/Маршрут - " + i + "/Выявленные особенности маршрут - ");
-                    foreach (string dt in data)
-                    {
-                        allVTOS.Add(dt);
-                    }
-                }
-            }
+        //     #region loading_from_journals
+        //    for (int i = 0; i < 999; i++)
+        //    {
+        //        if (Directory.Exists(_manager.folderName + @"/ВТО/Маршрут - " + i))
+        //        {
+        //            List<string> data = ReadAllFiles(_manager.folderName + @"/ВТО/Маршрут - " + i + "/Выявленные особенности маршрут - ");
+        //            foreach (string dt in data)
+        //            {
+        //                allVTOS.Add(dt);
+        //            }
+        //        }
+        //    }
 
-            if (Directory.Exists(_manager.folderName + @"/Журнал контроля"))
-            {
-                for (int i = 0; i < 999; i++)
-                {
-                    if (File.Exists(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
-                    {
-                        using (StreamReader sr = new StreamReader(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
-                        {
-                            while (!sr.EndOfStream)
-                            {
-                                allELS.Add(sr.ReadLine());
-                            }
-                        }
-                    }
-                }
-            }
+        //    if (Directory.Exists(_manager.folderName + @"/Журнал контроля"))
+        //    {
+        //        for (int i = 0; i < 999; i++)
+        //        {
+        //            if (File.Exists(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
+        //            {
+        //                using (StreamReader sr = new StreamReader(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
+        //                {
+        //                    while (!sr.EndOfStream)
+        //                    {
+        //                        allELS.Add(sr.ReadLine());
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-            if (Directory.Exists(_manager.folderName + @"/Неразрушающий контроль"))
-            {
-                for (int i = 0; i < 999; i++)
-                {
-                    if (File.Exists(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
-                    {
-                        using (StreamReader sr = new StreamReader(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
-                        {
-                            while (!sr.EndOfStream)
-                            {
-                                allMA.Add(sr.ReadLine());
-                            }
-                        }
-                    }
-                }
-            }
+        //    if (Directory.Exists(_manager.folderName + @"/Неразрушающий контроль"))
+        //    {
+        //        for (int i = 0; i < 999; i++)
+        //        {
+        //            if (File.Exists(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
+        //            {
+        //                using (StreamReader sr = new StreamReader(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
+        //                {
+        //                    while (!sr.EndOfStream)
+        //                    {
+        //                        allMA.Add(sr.ReadLine());
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-            #endregion
+        //    #endregion
 
-            // Если равен номер элемента и номер маршрута в листе -> наносим на битмап
+        //    // Если равен номер элемента и номер маршрута в листе -> наносим на битмап
 
-            int bitmap_x = 13000;
-            int bitmap_y = 1870; //1370 
-            int margin_x = 500;
-            int margin_y = 50;
-            int weight = Convert.ToInt32(Convert.ToDouble(textBox2.Text)*1000);
-            int height = Convert.ToInt32(textBox3.Text);
-            int fixedMargin = 0; //TODO фикс для труб больше в диаметре чем 1200
+        //    int bitmap_x = 13000;
+        //    int bitmap_y = 1870; //1370 
+        //    int margin_x = 500;
+        //    int margin_y = 50;
+        //    int weight = Convert.ToInt32(Convert.ToDouble(textBox2.Text)*1000);
+        //    int height = Convert.ToInt32(textBox3.Text);
+        //    int fixedMargin = 0; //TODO фикс для труб больше в диаметре чем 1200
 
-            Image img = new Bitmap(bitmap_x, bitmap_y);
+        //    Image img = new Bitmap(bitmap_x, bitmap_y);
 
-            //подготовка шаблона
-            using (Graphics gr = Graphics.FromImage(img)) 
-            {
+        //    //подготовка шаблона
+        //    using (Graphics gr = Graphics.FromImage(img)) 
+        //    {
 
-                gr.FillRectangle(new SolidBrush(Color.Aqua),0,0,bitmap_x,bitmap_y);//background
-                gr.FillRectangle(new SolidBrush(Color.Blue), margin_x, margin_y, weight, height);//труба
-                gr.FillRectangle(new SolidBrush(Color.Black), margin_x, margin_y+1200, 12000, 5);//горизонтальная линейка
+        //        gr.FillRectangle(new SolidBrush(Color.Aqua),0,0,bitmap_x,bitmap_y);//background
+        //        gr.FillRectangle(new SolidBrush(Color.Blue), margin_x, margin_y, weight, height);//труба
+        //        gr.FillRectangle(new SolidBrush(Color.Black), margin_x, margin_y+1200, 12000, 5);//горизонтальная линейка
 
-                if (height > 1200)
-                    fixedMargin = height - 1200;
+        //        if (height > 1200)
+        //            fixedMargin = height - 1200;
 
-                //вертикальная линейка большая
-                int w = 0;
-                for (int i = margin_x; i<= 12000+margin_x; i += 1000) 
-                {
-                    gr.FillRectangle(new SolidBrush(Color.Black), i, 0, 5, margin_y + 1300);
-                    gr.DrawString(w.ToString()+"м",label5.Font , new SolidBrush(Color.Black), i-40, margin_y + 1305);
-                    w++;
-                }
+        //        //вертикальная линейка большая
+        //        int w = 0;
+        //        for (int i = margin_x; i<= 12000+margin_x; i += 1000) 
+        //        {
+        //            gr.FillRectangle(new SolidBrush(Color.Black), i, 0, 5, margin_y + 1300);
+        //            gr.DrawString(w.ToString()+"м",label5.Font , new SolidBrush(Color.Black), i-40, margin_y + 1305);
+        //            w++;
+        //        }
                     
-                //вертикальная линейка маленькая
-                for (int i = margin_x; i <= 12000 + margin_x; i += 100) 
-                    gr.FillRectangle(new SolidBrush(Color.Black), i, margin_y + 1200, 5, 50);
+        //        //вертикальная линейка маленькая
+        //        for (int i = margin_x; i <= 12000 + margin_x; i += 100) 
+        //            gr.FillRectangle(new SolidBrush(Color.Black), i, margin_y + 1200, 5, 50);
 
-                //горизонтальная линейка
-                int h = 0;
-                int h_o = 0;
-                int subHeight = Convert.ToInt32(height / 12);
-                for (int i = 50; i <= height+margin_y; i+=subHeight) 
-                {
-                    gr.FillRectangle(new SolidBrush(Color.Black), margin_x - 100, i, 12200, 5);
-                    gr.DrawString(h.ToString()+"ч", label5.Font, new SolidBrush(Color.Black), margin_x - 280, i-50);
-                    gr.DrawString(h_o.ToString() + "°", label5.Font, new SolidBrush(Color.Black), 0, i - 50);
-                    h++;
-                    h_o += 30;
-                }
-            }
+        //        //горизонтальная линейка
+        //        int h = 0;
+        //        int h_o = 0;
+        //        int subHeight = Convert.ToInt32(height / 12);
+        //        for (int i = 50; i <= height+margin_y; i+=subHeight) 
+        //        {
+        //            gr.FillRectangle(new SolidBrush(Color.Black), margin_x - 100, i, 12200, 5);
+        //            gr.DrawString(h.ToString()+"ч", label5.Font, new SolidBrush(Color.Black), margin_x - 280, i-50);
+        //            gr.DrawString(h_o.ToString() + "°", label5.Font, new SolidBrush(Color.Black), 0, i - 50);
+        //            h++;
+        //            h_o += 30;
+        //        }
+        //    }
 
-            //нанесение дефектов на карту
-            using (Graphics gr = Graphics.FromImage(img)) 
-            {
+        //    //нанесение дефектов на карту
+        //    using (Graphics gr = Graphics.FromImage(img)) 
+        //    {
 
-                img.Save(_manager.folderName + "  test.png", ImageFormat.Png);
-            }
-        }
+        //        img.Save(_manager.folderName + "  test.png", ImageFormat.Png);
+        //    }
+        //}
 
         private void export_Click(object sender, EventArgs e)
         {
@@ -2664,7 +2665,7 @@ namespace Reporting_v1._0
                                 for (int dt = 0; dt < data.Length; dt++)
                                 {
                                     string[] current = data[dt].Split(';');
-                                    for (int s = 1; s <= current.Length; s++)
+                                    for (int s = 1; s <= current.Length-3; s++)
                                     {
                                         VIK.Cells[estr, s] = current[s - 1];
 
@@ -3264,6 +3265,11 @@ namespace Reporting_v1._0
 
                     if (detal.Checked)
                     {
+                        //####### Генерация листов детализации в модуле
+                            
+                            //TODO: list generation
+
+                        //#######
                         Excel.Worksheet li = (Excel.Worksheet)excelSheets.get_Item("Листы детализации");
                         li.Select();
 
@@ -3274,7 +3280,7 @@ namespace Reporting_v1._0
                         {
                             for (int pp = 0; pp < 999; pp++)
                             {
-                                if (File.Exists(_manager.folderName + @"/Элемент_" + p + "_" + pp + "_" + ".png"))
+                                if (File.Exists(_manager.folderName + @"/Элемент_" + p + "_" + pp + "_" + ".png")) // тут загрузка карт в отчет!!!
                                 {
                                     if (File.Exists(_manager.folderName + @"/Элемент_" + p + "_" + pp + "_схема_2" + ".png"))
                                     {
@@ -3922,7 +3928,7 @@ namespace Reporting_v1._0
             if (word_gen.Checked == true)
             {
                 string[] org = File.ReadAllLines(_manager.folderName + @"/Маршруты/Организация.txt");
-                string[] inf = File.ReadAllLines(_manager.folderName + @"/Маршруты/Поиск.txt");
+                //string[] inf = File.ReadAllLines(_manager.folderName + @"/Маршруты/Поиск.txt");
                 string path = _manager.folderName;
 
                 progressBar1.Maximum = 9999 + 999;
@@ -5208,7 +5214,11 @@ namespace Reporting_v1._0
                         }
                     }
 
-                    progressBar1.Value++;
+                    try
+                    {
+                        progressBar1.Value++;
+                    }
+                    catch { }
                 }
 
                 string[] photosss = Directory.GetFiles(_manager.folderName, "Элемент*", SearchOption.AllDirectories);
@@ -5625,7 +5635,108 @@ namespace Reporting_v1._0
 
         private void button7_Click(object sender, EventArgs e)
         {
-            detailsListGeneration();
+            List<string> allELS = new List<string>();
+            List<string> allVTOS = new List<string>();
+            List<string> allMA = new List<string>();
+
+            for (int i = 0; i < 999; i++)
+            {
+
+                if (Directory.Exists(_manager.folderName + @"/ВТО/Маршрут - " + i))
+                {
+                    List<string> data = ReadAllFiles(_manager.folderName + @"/ВТО/Маршрут - " + i + "/Выявленные особенности маршрут - ");
+                    foreach (string dt in data)
+                    {
+                        allVTOS.Add(dt);
+                    }
+                }
+
+            }
+
+            if (Directory.Exists(_manager.folderName + @"/Журнал контроля"))
+            {
+                for (int i = 0; i < 999; i++)
+                {
+                    if (File.Exists(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
+                    {
+                        using (StreamReader sr = new StreamReader(_manager.folderName + @"/Журнал контроля/Маршрут - " + i + ".txt"))
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                allELS.Add(sr.ReadLine());
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (Directory.Exists(_manager.folderName + @"/Неразрушающий контроль"))
+            {
+                for (int i = 0; i < 999; i++)
+                {
+                    if (File.Exists(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
+                    {
+                        using (StreamReader sr = new StreamReader(_manager.folderName + @"/Неразрушающий контроль/Неразрушающий контроль маршрут - " + i + ".txt"))
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                allMA.Add(sr.ReadLine());
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            foreach (string element in allELS) 
+            {
+                string[] curElement = element.Split(';');
+                bool generate = false;
+
+                foreach (string vto in allVTOS) 
+                {
+                    string[] curVto = vto.Split(';');
+                    if (curElement[0]==curVto[0] && curElement[1]==curVto[1] && curVto[2]!="-") 
+                    {
+                        generate = true;
+                    }
+                }
+
+                foreach (string ma in allMA) 
+                {
+                    string[] curMa = ma.Split(';');
+                    if (curElement[0] == curMa[0] && curElement[1] == curMa[1] && curMa[3] != "-") 
+                    {
+                        generate = true;
+                    }
+                }
+
+                if (generate) 
+                {
+                    try 
+                    {
+                        DefectsGeneration defs = new DefectsGeneration();
+                        Image img = defs.Generate(_manager, label5, label8, curElement[5], curElement[3],
+                                                                            Convert.ToInt32(curElement[1]), Convert.ToInt32(curElement[0]));
+                        //_manager.folderName + @"/Элемент_" + p + "_" + pp + "_" + ".png"
+                        using (img)
+                            img.Save(_manager.folderName + "/Элемент_" + curElement[0] + "_" + curElement[1] + "_.png", ImageFormat.Png);
+                    } 
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    
+                }
+            }
+
+
+
+            
+            
+            
+            
         }
     }
 }

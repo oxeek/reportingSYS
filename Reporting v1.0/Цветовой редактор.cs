@@ -97,7 +97,7 @@ namespace Reporting_v1._0
                         int r = colorPicker.Color.R;
                         int g = colorPicker.Color.G;
                         int b = colorPicker.Color.B;
-                        int a = Convert.ToInt32(f[1].Split(',')[3]); 
+                        int a = 150; 
 
                         string rgba = r + "," + g + "," + b + "," + a;
                         string itog = f[0] + ";" + rgba;
