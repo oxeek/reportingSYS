@@ -13,7 +13,6 @@ using iTextSharp.text.pdf;
 using iTextSharp.text;
 using Image = System.Drawing.Image;
 using System.Text.RegularExpressions;
-using SautinSoft;
 using System.Reflection;
 using Microsoft.Office.Interop.Word;
 using Spire.Doc;
@@ -2244,7 +2243,7 @@ namespace Reporting_v1._0
             {
                 if (CHBready.Checked)
                 {
-                    ImageBlackGenerator(this.label25, this.label26, Color.Black);
+                    //ImageBlackGenerator(this.label25, this.label26, Color.Black);
                 }
                 else
                 {
@@ -3897,31 +3896,15 @@ namespace Reporting_v1._0
                     #region export_finished
                     xlApp.DisplayAlerts = true;
 
-                    if (pdf_gen.Checked)
-                    {
-                        ewb.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, _manager.folderName + @"/1.pdf");
-                    }
                     ewb.Save();
                     ewb.Close();
                     xlApp.Quit();
+
+                    Marshal.ReleaseComObject(excelSheets);
+                    Marshal.ReleaseComObject(ewb);
+                    Marshal.ReleaseComObject(xlApp);
                     #endregion
 
-                    #region pdf_generation
-
-                    if (pdf_gen.Checked)
-                    {
-                        if (File.Exists(_manager.folderName + @"/Экспресс-отчёт.xlsm"))
-                        {
-                            OpenFileDialog f = new OpenFileDialog();
-                            if (f.ShowDialog() == DialogResult.OK)
-                            {
-                                pdfGeneration(_manager.folderName + @"/Экспресс-отчёт.xlsm", f.FileName);
-                            }
-
-                        }
-                    }
-
-                    #endregion
                 }
             }
             
